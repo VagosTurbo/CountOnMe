@@ -3,8 +3,6 @@ from tkinter import *
 import re
 import mathlib
 
-
-
 #generating and configuring window
 root = Tk()
 root.title("CountOnMe")
@@ -27,6 +25,20 @@ def convert_equation():
     for item in equation_list:
         if item == '':
             equation_list.remove(item)
+    #if - is at the beginning of equation
+    if equation_list[0] == '-':
+        equation_list[1] = '-' + equation_list[1]
+        equation_list.remove(equation_list[0])
+    #if + is at the beginning of equation
+    if equation_list[0] == '+':
+        equation_list.remove(equation_list[0])
+    #if - is followed by - 
+    for i in range(len(equation_list) - 1):
+        print(equation_list)
+        if equation_list[i] == '-' and equation_list[i+1] == '-':
+            equation_list[i] = '+'
+            equation_list.remove(equation_list[i+1])
+
     print("Equation list = ", equation_list)
 
 
