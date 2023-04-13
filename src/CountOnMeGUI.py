@@ -1,19 +1,30 @@
 import tkinter
 from tkinter import *
+import re
 
 
 
 #generating and configuring window
 root = Tk()
 root.title("CountOnMe")
-p1 = PhotoImage(file = 'CountOnMelogo_FINAL.png')
-root.iconphoto(False, p1)
+#p1 = PhotoImage(file = 'CountOnMelogo_FINAL.png')
+#root.iconphoto(False, p1)
 root.geometry("570x470+100+100")
 root.resizable(False, False)
 root.configure(bg="#17161b")
 
 #variable for equation
 equation = ""
+equation_list = []
+
+#convert equation to list
+def convert_equation():
+    global equation_list
+    global equation
+    separators =  r"([+\-*/^√!])"
+    equation_list = re.split(separators, equation)
+    print("Equation list = ", equation_list)
+
 
 #displaying numbers on display
 def show(value):
@@ -86,7 +97,7 @@ Button(root, text="3", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="
 Button(root, text="0", width=12, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("0")).place(x=8, y=400)
 
 Button(root, text=".", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show(".")).place(x=281, y=400)
-Button(root, text="=", width=5, height=2, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#F7A32A", command=lambda: calculate()).place(x=421, y=340)
+Button(root, text="=", width=5, height=2, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#F7A32A", command=lambda: [convert_equation() ,calculate()]).place(x=421, y=340)
 
 #binding keys from keybord
 root.bind('1', lambda event: show("1"))
