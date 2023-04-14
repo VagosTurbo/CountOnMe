@@ -6,8 +6,8 @@ from tkinter import *
 #generating and configuring window
 root = Tk()
 root.title("CountOnMe")
-p1 = PhotoImage(file = 'CountOnMelogo_FINAL.png')
-root.iconphoto(False, p1)
+#p1 = PhotoImage(file = 'CountOnMelogo_FINAL.png')
+#root.iconphoto(False, p1)
 root.geometry("570x470+100+100")
 root.resizable(False, False)
 root.configure(bg="#17161b")
