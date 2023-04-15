@@ -110,14 +110,14 @@ class TestSqrt(unittest.TestCase): ########################### SQRT tests
 ###################################################################################################
 
 class TestFactorial(unittest.TestCase): ########################### FACTORIAL tests
-    def test_factorial_positive_numbers(self):
+    def test_factorial_positive_Numbers(self):
         self.assertEqual(fact(9), 362880)
         self.assertEqual(fact(2), 2)
         self.assertEqual(fact(5), 120)
         self.assertEqual(fact(3), 6)
         self.assertEqual(fact(10), 3628800)
 
-    def test_factorial_negative_numbers(self): ########################### factorial of negative number doesn't exists
+    def test_factorial_negative_Numbers(self): ########################### factorial of negative number doesn't exists
         self.assertEqual(fact(-7), expected_output)
         self.assertEqual(fact(-3), expected_output)
         self.assertEqual(fact(-5), expected_output)
@@ -129,21 +129,21 @@ class TestFactorial(unittest.TestCase): ########################### FACTORIAL te
 ###################################################################################################
 
 class TestPwr(unittest.TestCase): ########################### RAISING TO A POWER tests
-    def test_pwr_positive_numbers(self):
+    def test_pwr_positive_Numbers(self):
         self.assertEqual(pwr(2,3), 8)
         self.assertEqual(pwr(8,2), 64)
         self.assertEqual(pwr(16,2), 256)
         self.assertEqual(pwr(9,3), 729)
         self.assertEqual(pwr(5,5), 3125)
 
-    def test_pwr_positive_negative_numbers(self):
+    def test_pwr_positive_negative_Numbers(self):
         self.assertEqual(pwr(-4,2), 16)
         self.assertEqual(pwr(-5,3), -125)
         self.assertEqual(pwr(2,-1), 0.5)
         self.assertEqual(pwr(5,-3), 0.008)
         self.assertEqual(pwr(-8,5), -32768)
 
-    def test_pwr_negative_numbers(self):
+    def test_pwr_negative_Numbers(self):
         self.assertEqual(pwr(-5,-2), 0.04)
         self.assertEqual(pwr(-5,-1), -0.2)
         self.assertEqual(pwr(-10,-1), -0.1)
@@ -154,3 +154,46 @@ class TestPwr(unittest.TestCase): ########################### RAISING TO A POWER
         self.assertEqual(pwr(4525356, 0), 1)
         self.assertEqual(pwr(654, 0), 1)
         self.assertEqual(pwr(8, 0), 1)
+
+###################################################################################################
+"""
+class TestNthRoot(unittest.TestCase): ########################### NTH ROOT tests
+    def test_nth_root_positive_Numbers(self):
+        self.assertEqual(nth_root(3, 27), 3)
+        self.assertEqual(nth_root(3, 125), 5)
+        self.assertEqual(nth_root(4, 1296), 6)
+        self.assertEqual(nth_root(9, 512), 2)
+        self.assertEqual(nth_root(3, 27), 3)
+        self.assertEqual(nth_root(6, 117649), 7)
+        self.assertEqual(nth_root(7, 0), 0)
+
+    def test_nth_root_positive_negative_Numbers(self):
+        self.assertEqual(nth_root(-4, 1), 1)
+        self.assertEqual(nth_root(-2, 25), 0.2)
+        self.assertEqual(nth_root(-2, 400), 0.05)
+
+    def test_nth_root_negative_Numbers(self):
+        self.assertEqual(nth_root(-3, -125), -0.2)
+        self.assertEqual(nth_root(-5, -1024), -0.25)
+        self.assertEqual(nth_root(-7, -10000000), -0.1)
+
+    def test_nth_root_positive_negative_even_Numbers(self): ########################### even number root of negative nember doesn't exixsts
+        self.assertEqual(nth_root(8, -390625), expected_output)
+        self.assertEqual(nth_root(4, -4096), expected_output)
+        self.assertEqual(nth_root(6, -15625), expected_output)
+        self.assertEqual(nth_root(-8, -6561), expected_output)
+
+    def test_nth_root_positive_negative_odd_Numbers(self): ########################### odd number root of negative number exists
+        self.assertEqual(nth_root(3, -216), -6)
+        self.assertEqual(nth_root(5, -16807), -7)
+        self.assertEqual(nth_root(13, -8192), -2)
+
+    def test_zero_nth_root(self): ########################### zeroth number root of any number doesn't exixsts
+        self.assertEqual(nth_root(0, 234), expected_output)
+        self.assertEqual(nth_root(0, 768547), expected_output)
+        self.assertEqual(nth_root(0, -324234), expected_output)
+    
+    def test_nth_root_zero_Number(self): ########################### nth number root of zero is zero
+        self.assertEqual(nth_root(3, 0), 0)
+        self.assertEqual(nth_root(-5, 0), expected_output)
+"""
