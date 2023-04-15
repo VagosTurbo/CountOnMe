@@ -16,12 +16,18 @@ root.configure(bg="#17161b")
 equation = ""
 equation_list = []
 separators =  r"([+\-*/^√!])"
+ERRORMESSAGE = "error"
 
 #convert equation to list
 def convert_equation():
     global equation_list
     global equation
     global seperators
+
+    #if return is pressed when no input was given do nothing
+    if equation == "":
+        equation_list.append("")
+        return
     equation_list = re.split(separators, equation)
     for item in equation_list:
         if item == '':
@@ -40,14 +46,20 @@ def convert_equation():
 #displaying numbers on display
 def show(value):
     global equation
+    #if error message is on the display first clear it
+    if equation == ERRORMESSAGE:
+        clear()
     equation += value
     display.config(text = equation)
     
 
 def remove():
     global equation
-    equation = equation[:-1]
-    display.config(text = equation)
+    if equation == ERRORMESSAGE:
+        clear()
+    else:
+        equation = equation[:-1]
+        display.config(text = equation)
 
 def negation():
     global equation
@@ -66,73 +78,79 @@ def clear():
 def calculate():
     global equation_list
     global separators
+    global equation
     result = ""
-    #go through sqrt    
-    while ("√" in equation_list):
-        for i, operator in enumerate(equation_list):
-            print(equation_list)
-            if operator == "√":
-                result = mathlib.sqrt(float(equation_list[i+1]))
-                equation_list.remove(equation_list[i])
-                equation_list[i] = result
+    #go through sqrt
+    try:    
+        while ("√" in equation_list):
+            for i, operator in enumerate(equation_list):
                 print(equation_list)
-                continue
-    #go through factorial
-    while ("!" in equation_list):
-        for i, operator in enumerate(equation_list):
-            if operator == "!":
-                result = mathlib.fact(int(equation_list[i-1]))
-                equation_list.remove(equation_list[i])
-                equation_list[i-1] = result
-                print(equation_list)
-    #if separator is followed by -
-    indexes_to_remove = []
-    for i in range(len(equation_list) - 1):
-        if re.match(separators, equation_list[i]) and equation_list[i+1] == '-':
-            print("equation_list[i+2] = ", equation_list[i+2])
-            equation_list[i+2] = '-' + str(equation_list[i+2])
-            print("Zmenene equation_list[i+2] = ", equation_list[i+2])
-            indexes_to_remove.append(i+1)
-            print("indexes_to_remove", indexes_to_remove)
-    #remove unnecessary '-'
-    equation_list = [item for i, item in enumerate(equation_list) if i not in indexes_to_remove]  
+                if operator == "√":
+                    result = mathlib.sqrt(float(equation_list[i+1]))
+                    equation_list.remove(equation_list[i])
+                    equation_list[i] = result
+                    print(equation_list)
+                    continue
+        #go through factorial
+        while ("!" in equation_list):
+            for i, operator in enumerate(equation_list):
+                if operator == "!":
+                    result = mathlib.fact(int(equation_list[i-1]))
+                    equation_list.remove(equation_list[i])
+                    equation_list[i-1] = result
+                    print(equation_list)
+        #if separator is followed by -
+        indexes_to_remove = []
+        for i in range(len(equation_list) - 1):
+            if re.match(separators, equation_list[i]) and equation_list[i+1] == '-':
+                print("equation_list[i+2] = ", equation_list[i+2])
+                equation_list[i+2] = '-' + str(equation_list[i+2])
+                print("Zmenene equation_list[i+2] = ", equation_list[i+2])
+                indexes_to_remove.append(i+1)
+                print("indexes_to_remove", indexes_to_remove)
+        #remove unnecessary '-'
+        equation_list = [item for i, item in enumerate(equation_list) if i not in indexes_to_remove]  
 
-    #go through * and /
-    while ("*" in equation_list) or ("/" in equation_list):
-        for i, operator in enumerate(equation_list):
-            print(equation_list)
-            if operator == "*":
-                result = mathlib.mul(int(equation_list[i-1]), float(equation_list[i+1]))
-                equation_list.remove(equation_list[i-1])
-                equation_list.remove(equation_list[i])
-                equation_list[i-1] = result
+        #go through * and /
+        while ("*" in equation_list) or ("/" in equation_list):
+            for i, operator in enumerate(equation_list):
                 print(equation_list)
-            if operator == "/":
-                result = mathlib.div(float(equation_list[i-1]), float(equation_list[i+1]))
-                equation_list.remove(equation_list[i-1])
-                equation_list.remove(equation_list[i])
-                equation_list[i-1] = result
+                if operator == "*":
+                    result = mathlib.mul(int(equation_list[i-1]), float(equation_list[i+1]))
+                    equation_list.remove(equation_list[i-1])
+                    equation_list.remove(equation_list[i])
+                    equation_list[i-1] = result
+                    print(equation_list)
+                if operator == "/":
+                    result = mathlib.div(float(equation_list[i-1]), float(equation_list[i+1]))
+                    equation_list.remove(equation_list[i-1])
+                    equation_list.remove(equation_list[i])
+                    equation_list[i-1] = result
+                    print(equation_list)
+        #go through add and sub 
+        while ("+" in equation_list) or ("-" in equation_list):
+            for i, operator in enumerate(equation_list):
                 print(equation_list)
-    #go through add and sub 
-    while ("+" in equation_list) or ("-" in equation_list):
-        for i, operator in enumerate(equation_list):
-            print(equation_list)
-            if operator == "-":
-                result = mathlib.sub(float(equation_list[i-1]), float(equation_list[i+1]))
-                equation_list.remove(equation_list[i-1])
-                equation_list.remove(equation_list[i])
-                equation_list[i-1] = result
-                print(equation_list)
+                if operator == "-":
+                    result = mathlib.sub(float(equation_list[i-1]), float(equation_list[i+1]))
+                    equation_list.remove(equation_list[i-1])
+                    equation_list.remove(equation_list[i])
+                    equation_list[i-1] = result
+                    print(equation_list)
 
-            if operator == "+":
-                result = mathlib.add(float(equation_list[i-1]), float(equation_list[i+1]))
-                equation_list.remove(equation_list[i-1])
-                equation_list.remove(equation_list[i])
-                equation_list[i-1] = result
-                print(equation_list)
+                if operator == "+":
+                    result = mathlib.add(float(equation_list[i-1]), float(equation_list[i+1]))
+                    equation_list.remove(equation_list[i-1])
+                    equation_list.remove(equation_list[i])
+                    equation_list[i-1] = result
+                    print(equation_list)
+    except:
+        equation_list[0] = ERRORMESSAGE
 
     result = equation_list[0]
+    equation = str(equation_list[0])
     display.config(text=result)
+    equation_list.clear()
 
 #generating a window for equation/result
 display = Label(root, width = 25, height = 2, text = "", font = ("arial", 30))
