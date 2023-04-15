@@ -15,12 +15,13 @@ root.configure(bg="#17161b")
 #variable for equation
 equation = ""
 equation_list = []
+separators =  r"([+\-*/^√!])"
 
 #convert equation to list
 def convert_equation():
     global equation_list
     global equation
-    separators =  r"([+\-*/^√!])"
+    global seperators
     equation_list = re.split(separators, equation)
     for item in equation_list:
         if item == '':
@@ -31,13 +32,7 @@ def convert_equation():
         equation_list.remove(equation_list[0])
     #if + is at the beginning of equation
     if equation_list[0] == '+':
-        equation_list.remove(equation_list[0])
-    #if - is followed by - 
-    for i in range(len(equation_list) - 1):
-        print(equation_list)
-        if equation_list[i] == '-' and equation_list[i+1] == '-':
-            equation_list[i] = '+'
-            equation_list.remove(equation_list[i+1])
+        equation_list.remove(equation_list[0])  
 
     print("Equation list = ", equation_list)
 
@@ -70,6 +65,7 @@ def clear():
 #after hitting '=' starts calculating and showing result on display
 def calculate():
     global equation_list
+    global separators
     result = ""
     #go through sqrt    
     while ("√" in equation_list):
@@ -83,13 +79,24 @@ def calculate():
                 continue
     #go through factorial
     while ("!" in equation_list):
-        print("som vo faktoriale")
         for i, operator in enumerate(equation_list):
             if operator == "!":
                 result = mathlib.fact(int(equation_list[i-1]))
                 equation_list.remove(equation_list[i])
                 equation_list[i-1] = result
                 print(equation_list)
+    #if separator is followed by -
+    indexes_to_remove = []
+    for i in range(len(equation_list) - 1):
+        if re.match(separators, equation_list[i]) and equation_list[i+1] == '-':
+            print("equation_list[i+2] = ", equation_list[i+2])
+            equation_list[i+2] = '-' + str(equation_list[i+2])
+            print("Zmenene equation_list[i+2] = ", equation_list[i+2])
+            indexes_to_remove.append(i+1)
+            print("indexes_to_remove", indexes_to_remove)
+    #remove unnecessary '-'
+    equation_list = [item for i, item in enumerate(equation_list) if i not in indexes_to_remove]  
+
     #go through * and /
     while ("*" in equation_list) or ("/" in equation_list):
         for i, operator in enumerate(equation_list):
