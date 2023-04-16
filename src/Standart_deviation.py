@@ -2,7 +2,7 @@ from mathlib import *
 
 input_numbers = input()
 
-numbers = input_numbers.split()
+numbers = input_numbers.split(" " or "\n" or "\t")
 
 if len(numbers) < 2:
     print("nizky pocet cisiel")
@@ -12,9 +12,8 @@ numbers = [float(number) for number in numbers]
 
 ############################# mean if numbers
 
-lenght_of_numbers_list = 0
-for num in numbers:
-        lenght_of_numbers_list = add(lenght_of_numbers_list, 1)
+
+lenght_of_numbers_list = len(numbers)
 
 sum_of_numbers = 0
 for num in numbers:
