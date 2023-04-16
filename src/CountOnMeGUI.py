@@ -38,7 +38,7 @@ def convert_equation():
         equation_list.remove(equation_list[0])
     #if + is at the beginning of equation
     if equation_list[0] == '+':
-        equation_list.remove(equation_list[0])  
+        equation_list.remove(equation_list[0])      
 
     print("Equation list = ", equation_list)
 
