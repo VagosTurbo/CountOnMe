@@ -1,8 +1,15 @@
+import re 
 from mathlib import *
 
-input_numbers = input()
+input_numbers = ""
+while True:
+    try:
+        line = input()
+    except EOFError:
+        break
+    input_numbers += line.strip() + " "
 
-numbers = input_numbers.split(" " or "\n" or "\t")
+numbers = re.split('\s+', input_numbers.strip())
 
 if len(numbers) < 2:
     print("nizky pocet cisiel")
@@ -25,7 +32,7 @@ print ("mean of numbers is", mean_of_numbers)
 ##### sum (xi- x_priemer)pwr 2
 sum_num_sub_mean = 0
 for x in numbers: 
-       sum_num_sub_mean = add(sum_num_sub_mean, pwr(sub(x, mean_of_numbers), 2))
+    sum_num_sub_mean = add(sum_num_sub_mean, pwr(sub(x, mean_of_numbers), 2))
 
 ##### N - 1 
 N_sub_1 = sub(lenght_of_numbers_list, 1)    
