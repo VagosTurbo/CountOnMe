@@ -1,5 +1,6 @@
 import tkinter
 from tkinter import *
+from tkinter import messagebox
 import re
 import mathlib
 
@@ -156,9 +157,33 @@ def calculate():
 display = Label(root, width = 25, height = 2, text = "", font = ("arial", 30))
 display.pack()
 
+#help message for user
+help_message = ["This is a simple calculator made by our team\n\n",
+                "C    -   clears the display\n",
+                "⌫  -   removes the last \n          character\n",
+                "√    -   root - first type degree \n          of root, then press\n          symbol √ and then type\n          the number you want to\n          root (e.g. 3√8)\n",
+                "x!   -   factorial - type the\n          number and then press !\n          (e.g. 3!)\n",
+                "xʸ   -   power - type the\n          number, then press xʸ\n          and then type the power\n          (e.g. 2xʸ3)\n",
+                "+/- -   negation - changes the\n          sign of the number\n",
+                "/    -   division\n",
+                "*    -   multiplication\n",
+                "-    -   subtraction\n",
+                "+   -   addition\n",
+                "=   -   calculates the result\n"]
+
+# create a menubar
+menubar = Menu(root, bg="#17161b", relief=FLAT, fg= "#fff", bd=0)
+# add a Help menu to the menubar
+help_menu = Menu(menubar, tearoff=0)
+help_menu.add_command(label="Help", command=lambda: messagebox.showinfo("Help", "".join(help_message)))
+menubar.add_cascade(label="Help", menu=help_menu)
+
+# display the menubar
+root.config(menu=menubar)
+
 #making and configuring buttons
 Button(root, text="C", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#289cbf", command=lambda: clear()).place(x=8, y=100)
-Button(root, text="<=", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#31BED7", command=lambda: remove()).place(x=141, y=100)
+Button(root, text="⌫", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#31BED7", command=lambda: remove()).place(x=141, y=100)
 Button(root, text="x!", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("!")).place(x=281, y=100)
 Button(root, text="/", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("/")).place(x=421, y=100)
 Button(root, text="*", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("*")).place(x=421, y=160)
@@ -166,7 +191,6 @@ Button(root, text="*", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="
 Button(root, text="^x", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("^")).place(x=8, y=160)
 Button(root, text="√", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("√")).place(x=141, y=160)
 Button(root, text="+/-", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: negation()).place(x=281, y=160)
-#Button(root, text=")", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show(")")).place(x=421, y=160)
 
 Button(root, text="7", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("7")).place(x=8, y=220)
 Button(root, text="8", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("8")).place(x=141, y=220)
@@ -204,7 +228,7 @@ root.bind('/', lambda event: show("/"))
 root.bind('-', lambda event: show("-"))
 root.bind('+', lambda event: show("+"))
 root.bind('c', lambda event: clear())
-root.bind('<Return>', lambda event: calculate())
+root.bind('<Return>', lambda event: [convert_equation(), calculate()])
 root.bind('<BackSpace>', lambda event: remove())
 
 
