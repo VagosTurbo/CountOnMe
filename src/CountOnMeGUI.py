@@ -64,9 +64,18 @@ def remove():
 
 def negation():
     global equation
-    buffer = float(equation)
-    buffer = -1*buffer
+    buffer = re.search(separators, equation)
+    
+    print(buffer)
+    '''
+    if buffer:
+        last_num = float(buffer.group(1))
+        print(last_num)
+    else:
+        print("No match found.")
+
     equation = str(buffer)
+    '''
     display.config(text = equation)
 
 #clears the display and equation
@@ -87,12 +96,23 @@ def calculate():
             for i, operator in enumerate(equation_list):
                 print(equation_list)
                 if operator == "√":
-                    result = mathlib.sqrt(float(equation_list[i+1]))
+                    result = mathlib.sqrt(float(equation_list[i+1]), float(equation_list[i-1]))
+                    equation_list.remove(equation_list[i-1])
                     equation_list.remove(equation_list[i])
-                    equation_list[i] = result
+                    equation_list[i-1] = result
                     print(equation_list)
                     continue
         #go through factorial
+        while ("^" in equation_list):
+            for i, operator in enumerate(equation_list):
+                print(equation_list)
+                if operator == "^":
+                    result = mathlib.pwr(float(equation_list[i-1]), float(equation_list[i+1]))
+                    equation_list.remove(equation_list[i-1])
+                    equation_list.remove(equation_list[i])
+                    equation_list[i-1] = result
+                    print(equation_list)
+                    continue
         while ("!" in equation_list):
             for i, operator in enumerate(equation_list):
                 if operator == "!":
