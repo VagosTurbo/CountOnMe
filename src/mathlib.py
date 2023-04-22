@@ -8,15 +8,15 @@ def sub(a,b):
 
 def div(a,b):
     result = a / b
-    return result
+    return str(result)
 
 def mul(a,b):
     result = a * b
-    return result
+    return str(result)
 
-def sqrt(a):
-    result = math.sqrt(a)
-    return float(result)
+def sqrt(a, b):
+    result = a**(1/b)
+    return str(result)
 
 def fact(a):
     fact = 1
