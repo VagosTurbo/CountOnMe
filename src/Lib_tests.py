@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import unittest
 from mathlib import *
 
@@ -45,18 +47,18 @@ class TestSubtraction(unittest.TestCase): ########################### SUBTRACTIO
 
 class TestDivision(unittest.TestCase): ########################### DIVISION tests
     def test_division_positive_Numbers(self):
-        self.assertEqual(div(50, 10), 5)
+        self.assertEqual(div(50, 10), 5.0)
         self.assertEqual(div(753, 3), 251)
         self.assertEqual(div(2000, 2), 1000)
         self.assertEqual(div(50, 40), 1.25)
 
     def test_division_positive_negative_Numbers(self):
-        self.assertEqual(div(570, -57), -10)
+        self.assertEqual(div(570, -57), -10.0)
         self.assertEqual(div(345, -10), -34.5)
         self.assertEqual(div(6000, -200), -30)
 
     def test_division_negative_Numbers(self):
-        self.assertEqual(div(-300, -50), 6)
+        self.assertEqual(div(-300, -50), 6.0)
         self.assertEqual(div(-345, -100), 3.45)
         self.assertEqual(div(-18000, -300), 60)
 
@@ -90,7 +92,7 @@ class TestMultiplication(unittest.TestCase): ########################### MULTIPL
         self.assertEqual(mul(0, 0), 0)
 
 ###################################################################################################
-
+"""
 class TestSqrt(unittest.TestCase): ########################### SQRT tests
     def test_sqrt_positive_Numbers(self):
         self.assertEqual(sqrt(9), 3)
@@ -106,7 +108,7 @@ class TestSqrt(unittest.TestCase): ########################### SQRT tests
         self.assertEqual(sqrt(-121), expected_output)
         self.assertEqual(sqrt(-256), expected_output)
         self.assertEqual(sqrt(-9801), expected_output)
-
+"""
 ###################################################################################################
 
 class TestFactorial(unittest.TestCase): ########################### FACTORIAL tests
@@ -156,45 +158,43 @@ class TestPwr(unittest.TestCase): ########################### RAISING TO A POWER
         self.assertEqual(pwr(8, 0), 1)
 
 ###################################################################################################
-"""
+
 class TestNthRoot(unittest.TestCase): ########################### NTH ROOT tests
-    def test_nth_root_positive_Numbers(self):
-        self.assertEqual(nth_root(3, 27), 3)
-        self.assertEqual(nth_root(3, 125), 5)
-        self.assertEqual(nth_root(4, 1296), 6)
-        self.assertEqual(nth_root(9, 512), 2)
-        self.assertEqual(nth_root(3, 27), 3)
-        self.assertEqual(nth_root(6, 117649), 7)
-        self.assertEqual(nth_root(7, 0), 0)
+    def test_sqrt_positive_Numbers(self):
+        self.assertEqual(sqrt(3, 27), 3)
+        self.assertEqual(sqrt(3, 125), 5)
+        self.assertEqual(sqrt(4, 1296), 6)
+        self.assertEqual(sqrt(9, 512), 2)
+        self.assertEqual(sqrt(3, 27), 3)
+        self.assertEqual(sqrt(6, 117649), 7)
+        self.assertEqual(sqrt(7, 0), 0)
 
-    def test_nth_root_positive_negative_Numbers(self):
-        self.assertEqual(nth_root(-4, 1), 1)
-        self.assertEqual(nth_root(-2, 25), 0.2)
-        self.assertEqual(nth_root(-2, 400), 0.05)
+    def test_sqrt_positive_negative_Numbers(self):
+        self.assertEqual(sqrt(-4, 1), 1)
+        self.assertEqual(sqrt(-2, 25), 0.2)
+        self.assertEqual(sqrt(-2, 400), 0.05)
 
-    def test_nth_root_negative_Numbers(self):
-        self.assertEqual(nth_root(-3, -125), -0.2)
-        self.assertEqual(nth_root(-5, -1024), -0.25)
-        self.assertEqual(nth_root(-7, -10000000), -0.1)
+    def test_sqrt_negative_Numbers(self):
+        self.assertEqual(sqrt(-3, -125), -0.2)
+        self.assertEqual(sqrt(-5, -1024), -0.25)
+        self.assertEqual(sqrt(-7, -10000000), -0.1)
 
-    def test_nth_root_positive_negative_even_Numbers(self): ########################### even number root of negative nember doesn't exixsts
-        self.assertEqual(nth_root(8, -390625), expected_output)
-        self.assertEqual(nth_root(4, -4096), expected_output)
-        self.assertEqual(nth_root(6, -15625), expected_output)
-        self.assertEqual(nth_root(-8, -6561), expected_output)
+    def test_sqrt_positive_negative_even_Numbers(self): ########################### even number root of negative nember doesn't exixsts
+        self.assertEqual(sqrt(8, -390625), expected_output)
+        self.assertEqual(sqrt(4, -4096), expected_output)
+        self.assertEqual(sqrt(6, -15625), expected_output)
+        self.assertEqual(sqrt(-8, -6561), expected_output)
 
-    def test_nth_root_positive_negative_odd_Numbers(self): ########################### odd number root of negative number exists
-        self.assertEqual(nth_root(3, -216), -6)
-        self.assertEqual(nth_root(5, -16807), -7)
-        self.assertEqual(nth_root(13, -8192), -2)
+    def test_sqrt_positive_negative_odd_Numbers(self): ########################### odd number root of negative number exists
+        self.assertEqual(sqrt(3, -216), -6)
+        self.assertEqual(sqrt(5, -16807), -7)
+        self.assertEqual(sqrt(13, -8192), -2)
 
-    def test_zero_nth_root(self): ########################### zeroth number root of any number doesn't exixsts
-        self.assertEqual(nth_root(0, 234), expected_output)
-        self.assertEqual(nth_root(0, 768547), expected_output)
-        self.assertEqual(nth_root(0, -324234), expected_output)
+    def test_zero_sqrt(self): ########################### zeroth number root of any number doesn't exixsts
+        self.assertEqual(sqrt(0, 234), expected_output)
+        self.assertEqual(sqrt(0, 768547), expected_output)
+        self.assertEqual(sqrt(0, -324234), expected_output)
     
-    def test_nth_root_zero_Number(self): ########################### nth number root of zero is zero
-        self.assertEqual(nth_root(3, 0), 0)
-        self.assertEqual(nth_root(-5, 0), expected_output)
-"""
-
+    def test_sqrt_zero_Number(self): ########################### nth number root of zero is zero
+        self.assertEqual(sqrt(3, 0), 0)
+        self.assertEqual(sqrt(-5, 0), expected_output)

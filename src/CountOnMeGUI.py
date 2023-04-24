@@ -1,13 +1,15 @@
+#!/usr/bin/env python3
+
 import tkinter
 from tkinter import *
+from tkinter import messagebox
 import re
 import mathlib
 
 #generating and configuring window
 root = Tk()
 root.title("CountOnMe")
-#p1 = PhotoImage(file = 'CountOnMelogo_FINAL.png')
-#root.iconphoto(False, p1)
+#root.iconbitmap("/home/boriss/Documents/VUT-FIT/IVS/proj2/CountOnMe/icon.ico")
 root.geometry("570x470+100+100")
 root.resizable(False, False)
 root.configure(bg="#17161b")
@@ -17,6 +19,8 @@ equation = ""
 equation_list = []
 separators =  r"([+\-*/^√!])"
 ERRORMESSAGE = "error"
+
+
 
 #convert equation to list
 def convert_equation():
@@ -51,7 +55,14 @@ def show(value):
         clear()
     equation += value
     display.config(text = equation)
-    
+
+def easteregg():
+    global equation
+    if equation == "5318008":
+        display.config(text = "You found the easter egg!")
+        return 1
+    else:
+        return 0
 
 def remove():
     global equation
@@ -63,9 +74,18 @@ def remove():
 
 def negation():
     global equation
-    buffer = float(equation)
-    buffer = -1*buffer
+    buffer = re.search(separators, equation)
+    
+    print(buffer)
+    '''
+    if buffer:
+        last_num = float(buffer.group(1))
+        print(last_num)
+    else:
+        print("No match found.")
+
     equation = str(buffer)
+    '''
     display.config(text = equation)
 
 #clears the display and equation
@@ -80,15 +100,30 @@ def calculate():
     global separators
     global equation
     result = ""
-    #go through sqrt
-    try:    
+    
+    try:
+        #go through sqrt
+        if(easteregg()):
+            return
         while ("√" in equation_list):
             for i, operator in enumerate(equation_list):
                 print(equation_list)
                 if operator == "√":
-                    result = mathlib.sqrt(float(equation_list[i+1]))
+                    result = mathlib.sqrt(float(equation_list[i+1]), float(equation_list[i-1]))
+                    equation_list.remove(equation_list[i-1])
                     equation_list.remove(equation_list[i])
-                    equation_list[i] = result
+                    equation_list[i-1] = result
+                    print(equation_list)
+                    continue
+        #go through ^
+        while ("^" in equation_list):
+            for i, operator in enumerate(equation_list):
+                print(equation_list)
+                if operator == "^":
+                    result = mathlib.pwr(float(equation_list[i-1]), float(equation_list[i+1]))
+                    equation_list.remove(equation_list[i-1])
+                    equation_list.remove(equation_list[i])
+                    equation_list[i-1] = result
                     print(equation_list)
                     continue
         #go through factorial
@@ -99,6 +134,7 @@ def calculate():
                     equation_list.remove(equation_list[i])
                     equation_list[i-1] = result
                     print(equation_list)
+
         #if separator is followed by -
         indexes_to_remove = []
         for i in range(len(equation_list) - 1):
@@ -111,6 +147,17 @@ def calculate():
         #remove unnecessary '-'
         equation_list = [item for i, item in enumerate(equation_list) if i not in indexes_to_remove]  
 
+        #go through log
+        while ("log" in equation_list):
+            for i, operator in enumerate(equation_list):
+                print(equation_list)
+                if operator == "log":
+                    result = mathlib.log(float(equation_list[i+1]))
+                    equation_list[i+1] = result
+                    equation_list.remove(equation_list[i])
+                    print(equation_list)
+                    continue
+            
         #go through * and /
         while ("*" in equation_list) or ("/" in equation_list):
             for i, operator in enumerate(equation_list):
@@ -127,6 +174,7 @@ def calculate():
                     equation_list.remove(equation_list[i])
                     equation_list[i-1] = result
                     print(equation_list)
+
         #go through add and sub 
         while ("+" in equation_list) or ("-" in equation_list):
             for i, operator in enumerate(equation_list):
@@ -152,21 +200,44 @@ def calculate():
     display.config(text=result)
     equation_list.clear()
 
-#generating a window for equation/result
+#generating a window for equation/resuglt
 display = Label(root, width = 25, height = 2, text = "", font = ("arial", 30))
 display.pack()
 
+#help message for user
+help_message = ["This is a simple calculator made by our team\n\n",
+                "C    -   clears the display\n",
+                "⌫  -   removes the last \n          character\n",
+                "√    -   root - first type degree \n          of root, then press\n          symbol √ and then type\n          the number you want to\n          root (e.g. 3√8)\n",
+                "x!   -   factorial - type the\n          number and then press !\n          (e.g. 3!)\n",
+                "xʸ   -   power - type the\n          number, then press xʸ\n          and then type the power\n          (e.g. 2xʸ3)\n",
+                "+/- -   negation - changes the\n          sign of the number\n",
+                "/    -   division\n",
+                "*    -   multiplication\n",
+                "-    -   subtraction\n",
+                "+   -   addition\n",
+                "=   -   calculates the result\n"]
+
+# create a menubar
+menubar = Menu(root, bg="#17161b", relief=FLAT, fg= "#fff", bd=0)
+# add a Help menu to the menubar
+help_menu = Menu(menubar, tearoff=0)
+help_menu.add_command(label="Help", command=lambda: messagebox.showinfo("Help", "".join(help_message)))
+menubar.add_cascade(label="Help", menu=help_menu)
+
+# display the menubar
+root.config(menu=menubar)
+
 #making and configuring buttons
 Button(root, text="C", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#289cbf", command=lambda: clear()).place(x=8, y=100)
-Button(root, text="<=", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#31BED7", command=lambda: remove()).place(x=141, y=100)
+Button(root, text="⌫", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#31BED7", command=lambda: remove()).place(x=141, y=100)
 Button(root, text="x!", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("!")).place(x=281, y=100)
 Button(root, text="/", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("/")).place(x=421, y=100)
 Button(root, text="*", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("*")).place(x=421, y=160)
 
-Button(root, text="^x", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("^")).place(x=8, y=160)
-Button(root, text="√", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("√")).place(x=141, y=160)
-Button(root, text="+/-", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: negation()).place(x=281, y=160)
-#Button(root, text=")", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show(")")).place(x=421, y=160)
+Button(root, text="xʸ", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("^")).place(x=8, y=160)
+Button(root, text="ˣ√y", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("√")).place(x=141, y=160)
+Button(root, text="ln", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("ln")).place(x=281, y=160)
 
 Button(root, text="7", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("7")).place(x=8, y=220)
 Button(root, text="8", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("8")).place(x=141, y=220)
@@ -204,7 +275,7 @@ root.bind('/', lambda event: show("/"))
 root.bind('-', lambda event: show("-"))
 root.bind('+', lambda event: show("+"))
 root.bind('c', lambda event: clear())
-root.bind('<Return>', lambda event: calculate())
+root.bind('<Return>', lambda event: [convert_equation(), calculate()])
 root.bind('<BackSpace>', lambda event: remove())
 
 
