@@ -27,3 +27,7 @@ def fact(a):
 def pwr(a,b):
     result = a**b
     return result
+
+def log(a):
+    result = math.log(a)
+    return result
