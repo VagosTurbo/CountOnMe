@@ -90,8 +90,9 @@ def calculate():
     global separators
     global equation
     result = ""
-    #go through sqrt
-    try:    
+    
+    try:
+        #go through sqrt    
         while ("√" in equation_list):
             for i, operator in enumerate(equation_list):
                 print(equation_list)
@@ -102,7 +103,7 @@ def calculate():
                     equation_list[i-1] = result
                     print(equation_list)
                     continue
-        #go through factorial
+        #go through ^
         while ("^" in equation_list):
             for i, operator in enumerate(equation_list):
                 print(equation_list)
@@ -113,6 +114,7 @@ def calculate():
                     equation_list[i-1] = result
                     print(equation_list)
                     continue
+        #go through factorial
         while ("!" in equation_list):
             for i, operator in enumerate(equation_list):
                 if operator == "!":
@@ -120,6 +122,7 @@ def calculate():
                     equation_list.remove(equation_list[i])
                     equation_list[i-1] = result
                     print(equation_list)
+
         #if separator is followed by -
         indexes_to_remove = []
         for i in range(len(equation_list) - 1):
@@ -132,6 +135,17 @@ def calculate():
         #remove unnecessary '-'
         equation_list = [item for i, item in enumerate(equation_list) if i not in indexes_to_remove]  
 
+        #go through log
+        while ("log" in equation_list):
+            for i, operator in enumerate(equation_list):
+                print(equation_list)
+                if operator == "log":
+                    result = mathlib.log(float(equation_list[i+1]))
+                    equation_list[i+1] = result
+                    equation_list.remove(equation_list[i])
+                    print(equation_list)
+                    continue
+            
         #go through * and /
         while ("*" in equation_list) or ("/" in equation_list):
             for i, operator in enumerate(equation_list):
@@ -148,6 +162,7 @@ def calculate():
                     equation_list.remove(equation_list[i])
                     equation_list[i-1] = result
                     print(equation_list)
+
         #go through add and sub 
         while ("+" in equation_list) or ("-" in equation_list):
             for i, operator in enumerate(equation_list):
