@@ -19,6 +19,8 @@ equation_list = []
 separators =  r"([+\-*/^√!])"
 ERRORMESSAGE = "error"
 
+
+
 #convert equation to list
 def convert_equation():
     global equation_list
@@ -52,7 +54,14 @@ def show(value):
         clear()
     equation += value
     display.config(text = equation)
-    
+
+def easteregg():
+    global equation
+    if equation == "5318008":
+        display.config(text = "You found the easter egg!")
+        return 1
+    else:
+        return 0
 
 def remove():
     global equation
@@ -92,7 +101,9 @@ def calculate():
     result = ""
     
     try:
-        #go through sqrt    
+        #go through sqrt
+        if(easteregg()):
+            return
         while ("√" in equation_list):
             for i, operator in enumerate(equation_list):
                 print(equation_list)
@@ -188,7 +199,7 @@ def calculate():
     display.config(text=result)
     equation_list.clear()
 
-#generating a window for equation/result
+#generating a window for equation/resuglt
 display = Label(root, width = 25, height = 2, text = "", font = ("arial", 30))
 display.pack()
 
@@ -225,7 +236,7 @@ Button(root, text="*", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="
 
 Button(root, text="xʸ", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("^")).place(x=8, y=160)
 Button(root, text="ˣ√y", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("√")).place(x=141, y=160)
-Button(root, text="+/-", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: negation()).place(x=281, y=160)
+Button(root, text="ln", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("ln")).place(x=281, y=160)
 
 Button(root, text="7", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("7")).place(x=8, y=220)
 Button(root, text="8", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("8")).place(x=141, y=220)
