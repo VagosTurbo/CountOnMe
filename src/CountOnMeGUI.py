@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import tkinter
 from tkinter import *
 from tkinter import messagebox
@@ -7,8 +9,7 @@ import mathlib
 #generating and configuring window
 root = Tk()
 root.title("CountOnMe")
-#p1 = PhotoImage(file = 'CountOnMelogo_FINAL.png')
-#root.iconphoto(False, p1)
+#root.iconbitmap("/home/boriss/Documents/VUT-FIT/IVS/proj2/CountOnMe/icon.ico")
 root.geometry("570x470+100+100")
 root.resizable(False, False)
 root.configure(bg="#17161b")
