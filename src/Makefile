@@ -27,11 +27,3 @@ doc:
 run:
 
 profile: 
-all (translates the project - including the profiling program) - choose the option below
-help (prints help with a description of what needs to be done before starting the program)
-pack (packages the project so that it can be submitted)
-clean (deletes all files that should not be committed)
-test (runs math library tests)
-doc (starts documentation generation)
-run (starts the program)
-profile (starts the translation of the program for calculating the standard deviation for profiling) - when choosing a scripting language, use it to download dependencies, or choose the option below
