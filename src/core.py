@@ -27,7 +27,6 @@ def return_result(equation_list):
     try:
         if (easteregg(equation_list)):
             return "You found the easter egg!"
-        print("THIS IS OG EQUATION LIST", equation_list)
         #if separator is followed by -
         indexes_to_remove = []
         for i in range(len(equation_list) - 1):
@@ -35,9 +34,8 @@ def return_result(equation_list):
                 equation_list[i+2] = '-' + str(equation_list[i+2])
                 indexes_to_remove.append(i+1)
 
-        #remove unnecessary '-'
+        #remove unnecessary '-' 
         equation_list = [item for i, item in enumerate(equation_list) if i not in indexes_to_remove]
-        print("THIS IS EQUATION LIST", equation_list)
         if equation_list[0] == '--':
             equation_list.pop(0)
         #go through sqrt

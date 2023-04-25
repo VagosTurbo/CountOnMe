@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-import math
-
 def add(a,b):
     result = a + b
     return str(round(result, 6))
@@ -23,6 +21,8 @@ def mul(a,b):
 def nthroot(a, b):
     if b == 0:
         raise ZeroDivisionError("Can't divide by zero!")
+    if a < 0 and b % 2 == 0:
+        raise ValueError("Result is not a real number!")
     result = a**(1/b)
     return str(round(result, 6))
 
@@ -39,7 +39,8 @@ def pwr(a,b):
     return str(round(result, 6))
 
 def ln(a):
-    if a <= 0:
-        raise ValueError("Can't take log of negative number!")
-    result = math.log(a, math.e)
-    return str(round(result, 6))
+	if a <= 0:
+		raise ValueError("Can't take ln of negative number!")
+	n = 1000000.0
+	return round(n * ((a ** (1/n)) - 1), 6)
+    
