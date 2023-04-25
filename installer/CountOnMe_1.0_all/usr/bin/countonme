@@ -1,0 +1,5 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+
+CountOnMeDir=`dirname "$0"`
+exec python3 "${CountOnMeDir}/CountOnMeGUI.py"
