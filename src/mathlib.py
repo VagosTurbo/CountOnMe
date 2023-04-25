@@ -31,7 +31,7 @@ def pwr(a,b):
     result = a**b
     return str(result)
 
-def log(a):
+def ln(a):
     if a <= 0:
         raise ValueError("Can't take log of negative number!")
     result = math.log(a, math.e)
