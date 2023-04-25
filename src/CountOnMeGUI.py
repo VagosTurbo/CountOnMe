@@ -6,6 +6,11 @@ from tkinter import messagebox
 import re
 import mathlib
 
+## \file CountOnMeGUI.py
+# \brief GUI calculator that performs basic arithmetic operations as well as root, exponentiation, factorial, ...
+#
+# This file contains a GUI calculator with a basic interface that allows the user to perform the following operations: addition, subtraction, multiplication, division, exponentiation, root, factorial, and so on.
+
 #generating and configuring window
 root = Tk()
 root.title("CountOnMe")
@@ -18,11 +23,14 @@ root.configure(bg="#17161b")
 equation = ""
 equation_list = []
 separators =  r"([+\-*/^√!])"
+
+## eroor massage
 ERRORMESSAGE = "error"
 
+## \brief Function that converts equation to list
+#
+# This function takes the equation string and converts it to a list of numbers and operators.
 
-
-#convert equation to list
 def convert_equation():
     global equation_list
     global equation
@@ -46,8 +54,12 @@ def convert_equation():
 
     print("Equation list = ", equation_list)
 
+## \brief Function that displays the numbers on the calculator's display
+#  
+#  This function updates the value of the equation string with the value of the button that was clicked, and displays it on the calculator's display. 
+#
+#  \param value the value of the button that was clicked
 
-#displaying numbers on display
 def show(value):
     global equation
     #if error message is on the display first clear it
@@ -55,6 +67,12 @@ def show(value):
         clear()
     equation += value
     display.config(text = equation)
+
+## \brief Function that displays a message if the user types in a specific string
+#  
+#  This function checks whether the user has typed in a specific string and displays a message on the calculator's display if they have.
+#
+#  \return 1 if the user has found the easter egg, 0 otherwise
 
 def easteregg():
     global equation
@@ -64,6 +82,11 @@ def easteregg():
     else:
         return 0
 
+## \brief Function that removes the last character from the equation string
+#  
+#  This function removes the last character from the equation string and updates the value of the calculator's display. 
+#
+
 def remove():
     global equation
     if equation == ERRORMESSAGE:
@@ -71,6 +94,11 @@ def remove():
     else:
         equation = equation[:-1]
         display.config(text = equation)
+
+## \brief Function that flips the numbers sign (from - to +, from + to -)
+#
+#
+# 
 
 def negation():
     global equation
@@ -88,13 +116,21 @@ def negation():
     '''
     display.config(text = equation)
 
-#clears the display and equation
+## \brief Function that clears the display and resets 'equation' to an empty string
+#
+#
+#
+
 def clear():
     global equation
     equation = ""
     display.config(text = equation)
 
-#after hitting '=' starts calculating and showing result on display
+## \brief The function 'calculate' performs the calculation based on 'equation'
+#
+# This function calculates and shows the result on the display after hitting '='.
+#
+
 def calculate():
     global equation_list
     global separators
