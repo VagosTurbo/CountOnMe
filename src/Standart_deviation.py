@@ -30,20 +30,20 @@ def STD_Deviation(numbers):
 
     sum_of_numbers = 0
     for num in numbers:
-        sum_of_numbers = add(sum_of_numbers, num)
+        sum_of_numbers = float(add(sum_of_numbers, num))
 
-    mean_of_numbers =  div(sum_of_numbers, lenght_of_numbers_list)
+    mean_of_numbers =  float(div(sum_of_numbers, lenght_of_numbers_list))
 
 ############################# standart deviation
 ##### sum (xi- x_priemer)pwr 2
     sum_num_sub_mean = 0
     for x in numbers: 
-        sum_num_sub_mean = add(sum_num_sub_mean, pwr(sub(x, float(mean_of_numbers)), 2))
+        sum_num_sub_mean = float(add(sum_num_sub_mean, float(pwr(float(sub(x, float(mean_of_numbers))), 2))))
 
 ##### N - 1 
-    N_sub_1 = sub(lenght_of_numbers_list, 1)    
+    N_sub_1 = float(sub(lenght_of_numbers_list, 1))    
 
-    Standart_deviation = sqrt(float(div(sum_num_sub_mean, N_sub_1)), 2)
+    Standart_deviation = float(nthroot(float(div(sum_num_sub_mean, N_sub_1)), 2))
 
     return Standart_deviation 
 
