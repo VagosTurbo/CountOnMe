@@ -30,7 +30,6 @@ def return_result(equation_list):
         #go through sqrt
         while ("√" in equation_list):
             for i, operator in enumerate(equation_list):
-                print(equation_list)
                 if operator == "√":
                     result = mathlib.nthroot(float(equation_list[i+1]), float(equation_list[i-1]))
                     equation_list.remove(equation_list[i-1])
@@ -84,7 +83,6 @@ def return_result(equation_list):
         #go through add and sub 
         while ("+" in equation_list) or ("-" in equation_list):
             for i, operator in enumerate(equation_list):
-                print(equation_list)
                 if operator == "-":
                     result = mathlib.sub(float(equation_list[i-1]), float(equation_list[i+1]))
                     equation_list.remove(equation_list[i-1])

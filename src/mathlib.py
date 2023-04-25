@@ -22,6 +22,8 @@ def nthroot(a, b):
     return str(a**(1/b))
 
 def fact(a):
+    if a < 0:
+        raise ValueError("Can't take factorial of negative number!")
     fact = 1
     for num in range(2, a + 1):
         fact *= num

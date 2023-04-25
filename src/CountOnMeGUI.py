@@ -5,7 +5,7 @@ from tkinter import *
 from tkinter import messagebox
 import re
 import mathlib
-import CalculatorParser
+import core
 
 ## \file CountOnMeGUI.py
 # \brief GUI calculator that performs basic arithmetic operations as well as root, exponentiation, factorial, ...
@@ -50,8 +50,6 @@ def convert_equation():
     #if + is at the beginning of equation
     if equation_list[0] == '+':
         equation_list.remove(equation_list[0])      
-
-    print("Equation list = ", equation_list)
 
 ## \brief Function that displays the numbers on the calculator's display
 #  
@@ -112,9 +110,10 @@ def clear():
 
 def calculate():
     global equation
-    result = CalculatorParser.return_result(equation_list)
-    equation = str(equation_list[0])
+    global equation_list
+    result = core.return_result(equation_list)
     display.config(text=result)
+    equation = ""
     equation_list.clear()
 
 #generating a window for equation/resuglt
