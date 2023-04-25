@@ -52,7 +52,6 @@ def convert_equation():
         equation_list.remove(equation_list[0])      
 
 ## @brief Function that displays the numbers on the calculator's display
-#  
 # @param value the value of the button that was clicked.
 # @return
 
@@ -65,7 +64,7 @@ def show(value):
     display.config(text = equation)
 
 ## @brief Function that displays a message if the user types in a specific string
-#  @param
+#  @param equation all equations
 #  @return 1 if the user has found the easter egg, 0 otherwise
 
 def easteregg():
@@ -77,8 +76,7 @@ def easteregg():
         return 0
 
 ## @brief Function that removes the last character from the equation string
-# @param
-# @return
+# @param equation all equations
 
 def remove():
     global equation
@@ -90,8 +88,7 @@ def remove():
 
 
 ## @brief Function that clears the display and resets 'equation' to an empty string
-# @param
-# @return
+# @param equation all equations
 
 def clear():
     global equation
@@ -99,8 +96,9 @@ def clear():
     display.config(text = equation)
 
 ## @brief The function 'calculate' performs the calculation based on 'equation'
-# @param
-# @return
+# @param equation_list list of all equations
+# @param equation all equations
+# @param result result of the calculate function
 
 def calculate():
     global equation
@@ -110,7 +108,7 @@ def calculate():
     equation = ""
     equation_list.clear()
 
-## @brief generating a window for equation/resuglt
+## @brief generating a window for equation/result
 display = Label(root, width = 25, height = 2, text = "", font = ("arial", 30))
 display.pack()
 
@@ -130,7 +128,7 @@ help_message = ["This is a simple calculator made by our team\n\n",
 
 ## @brief create a menubar
 menubar = Menu(root, bg="#17161b", relief=FLAT, fg= "#fff", bd=0)
-# add a Help menu to the menubar
+## @brief Help menu to the menubar
 help_menu = Menu(menubar, tearoff=0)
 help_menu.add_command(label="Help", command=lambda: messagebox.showinfo("Help", "".join(help_message)))
 menubar.add_cascade(label="Help", menu=help_menu)
