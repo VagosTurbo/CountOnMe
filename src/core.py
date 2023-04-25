@@ -3,16 +3,28 @@
 import mathlib
 import re
 
+## @file core.py
+# @brief This file is a parser, returns result of equation
+# @author Jakub Pogadl
+# @date 21.4 2023
+# @return result of equation
+
 separators = r"([+\-*/^√!]|ln)"
+
+## @brief Checks if the first element in the given equation list is a special number.
+# @param equation_list List of equation elements.
+# @return Returns 1 if the first element is "5318008", otherwise 0.
 
 def easteregg(equation_list):
     if equation_list[0] == "5318008":
         return 1
     else:
         return 0
-        
-def return_result(equation_list):
 
+## @brief Evaluates a list of equation elements and returns the result.
+# @param equation_list List of equation elements.
+# @return Returns the evaluated result of the equation.
+def return_result(equation_list):
 
     if (easteregg(equation_list)):
         return "You found the easter egg!"
