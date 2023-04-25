@@ -93,26 +93,6 @@ def remove():
         equation = equation[:-1]
         display.config(text = equation)
 
-## \brief Function that flips the numbers sign (from - to +, from + to -)
-#
-#
-# 
-
-def negation():
-    global equation
-    buffer = re.search(separators, equation)
-    
-    print(buffer)
-    '''
-    if buffer:
-        last_num = float(buffer.group(1))
-        print(last_num)
-    else:
-        print("No match found.")
-
-    equation = str(buffer)
-    '''
-    display.config(text = equation)
 
 ## \brief Function that clears the display and resets 'equation' to an empty string
 #
