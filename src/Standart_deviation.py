@@ -13,7 +13,7 @@ while True:
 
 numbers = re.split('\s+', input_numbers.strip())
 
-if len(numbers) < 2:
+if len(numbers) < 1000:
     print("nizky pocet cisiel")
     exit()
 
