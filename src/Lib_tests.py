@@ -188,19 +188,19 @@ class TestLN(unittest.TestCase):
     # @ Test case method for positive logarithms
     def test_ln_positive_numbers(self):
         self.assertEqual(ln(1), '0.0')
-        self.assertEqual(ln(10), '2.302585092994046')
-        self.assertEqual(ln(100), '2.0')
-        self.assertEqual(ln(1000), '3')
-        self.assertEqual(ln(78), '0')
+        self.assertEqual(ln(10), '2.302585')
+        self.assertEqual(ln(100), '4.60517')
+        self.assertEqual(ln(1000), '6.907755')
+        self.assertEqual(ln(78), '4.356709')
     # @ Test case method for negative logarithms (doesn't exist)
     def test_ln_negative_numbers(self):
-        self.assertEqual(ln(-9), expected_output)
-        self.assertEqual(ln(-8765), expected_output)
-        self.assertEqual(ln(-532), expected_output)
-        self.assertEqual(ln(-78), expected_output)
-        self.assertEqual(ln(632), expected_output)
-        self.assertEqual(ln(-1), expected_output)
+        self.assertRaises(ValueError, ln, -9)
+        self.assertRaises(ValueError, ln, -8765)
+        self.assertRaises(ValueError, ln, -532)
+        self.assertRaises(ValueError, ln, -78)
+        self.assertRaises(ValueError, ln, -632)
+        self.assertRaises(ValueError, ln, -1)
     # @ Test case method for zero logarithm (doesn't exist)
     def test_ln_zero(self): 
-        self.assertEqual(ln(0), expected_output)
+        self.assertRaises(ValueError, ln, 0)
 ## End of file Lib_tests.py ##
