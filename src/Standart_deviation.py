@@ -6,6 +6,13 @@ import pstats
 from pstats import SortKey
 from mathlib import *
 
+## @file Standart_deviation.py
+# @author Kristian Grecnar
+# @brief It calculates standart deviation of the sample which is located in a text file (data.txt)
+# @date 24.4 2023
+# @param numbers array of numbers from text file data.txt
+# @return the value of standart deviation
+
 input_numbers = ""
 while True:
     try:
@@ -18,7 +25,9 @@ numbers = re.split('\s+', input_numbers.strip())
 
 numbers = [float(number) for number in numbers]
 
-##################################################### standart deviation function
+## @brief Standart deviation function
+# @param numbers array of numbers from text file data.txt
+# @return value of standart deviation
 def STD_Deviation(numbers):
 
 ############################# mean ff numbers
@@ -37,7 +46,6 @@ def STD_Deviation(numbers):
     for x in numbers: 
         sum_num_sub_mean = float(add(sum_num_sub_mean, float(pwr(float(sub(x, float(mean_of_numbers))), 2))))
 
-##### N - 1 
     N_sub_1 = float(sub(lenght_of_numbers_list, 1))    
 
     Standart_deviation = float(nthroot(float(div(sum_num_sub_mean, N_sub_1)), 2))
@@ -45,8 +53,6 @@ def STD_Deviation(numbers):
     return Standart_deviation 
 
 STD_Deviation(numbers)
-#####################################################
-
 
 std_dev=STD_Deviation(numbers)
 print(std_dev)
@@ -60,3 +66,5 @@ with open ("output_time.txt", "w" ) as f:
 with open ("output_calls.txt", "w" ) as f:
     p = pstats.Stats("Profilefile.txt", stream=f)
     p.sort_stats("calls").print_stats()
+    
+## End of file Standart_deviation.py ##
