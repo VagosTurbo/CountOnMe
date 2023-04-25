@@ -1,0 +1,36 @@
+#!/bin/bash
+
+
+echo "Installing dependencies..."
+mkdir /home/$USER/debpkgs
+mkdir /home/$USER/debpkgs/CountOnMex64Ubuntu
+mkdir /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN
+mkdir /home/$USER/debpkgs/CountOnMex64Ubuntu/usr
+mkdir /home/$USER/debpkgs/CountOnMex64Ubuntu/usr/bin
+mkdir /home/$USER/debpkgs/CountOnMex64Ubuntu/opt
+touch /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/control
+
+echo "Package: CountOnMe" >> /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/control
+echo "Version: 1.0" >> /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/control
+echo "Architecture: amd64" >> /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/control
+echo "Essential: no" >> /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/control
+echo "Priority: optional" >> /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/control
+echo "Depends: python3; mathlib.py" >> /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/control
+echo "Maintainer: CountOnMe Team" >> /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/control
+echo "Description: CountOnMe is a simple math expression evaluator" >> /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/control
+
+#preints
+touch /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/preinst
+echo "#!/bin/bash" >> /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/preinst
+echo "" >> /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/preinst
+echo "sudo apt install python3" >> /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/preinst
+echo "sudo apt install python3-pip" >> /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/preinst
+echo "sudo apt install python3-tk" >> /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN/preinst
+cd /home/$USER/debpkgs/CountOnMex64Ubuntu/DEBIAN
+chmod +x preinst
+
+./preinst
+
+dpkg-deb --build /home/$USER/debpkgs/CountOnMex64Ubuntu
+
+
