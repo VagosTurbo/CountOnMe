@@ -16,9 +16,6 @@ while True:
 
 numbers = re.split('\s+', input_numbers.strip())
 
-if len(numbers) < 1000:
-    exit()
-
 numbers = [float(number) for number in numbers]
 
 ##################################################### standart deviation function
