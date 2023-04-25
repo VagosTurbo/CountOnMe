@@ -163,7 +163,7 @@ def calculate():
         for i, operator in enumerate(equation_list):
             print(equation_list)
             if operator == "ln":
-                result = mathlib.log(float(equation_list[i+1]))
+                result = mathlib.ln(float(equation_list[i+1]))
                 equation_list[i+1] = result
                 equation_list.remove(equation_list[i])
                 print(equation_list)
