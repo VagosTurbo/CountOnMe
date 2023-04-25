@@ -4,6 +4,11 @@ PYTH = python3
 ZIP = xseman06_xgrecn00_xbaumg01_xpogad00
 GUI = CountOnMeGUI.py
 PROFIL = Standart_deviation.py
+TESTS = Lib_tests.py
+UT = unittest
+
+# PHONY Declaration
+.PHONY: help all pack clean test doc run profile
 
 help:
 	@echo "Simple calculator named CountOnMe																				"
@@ -25,6 +30,10 @@ all:
 
 # Option that packs and makes the zip of the contents of the project for handing out the project
 pack: clean
+	rm -rf ../../$(ZIP).zip ../../$(ZIP)
+	cd ../../ && mkdir $(ZIP)
+	zip -r $(ZIP).zip 
+	rm -rf ../../$(ZIPNAME)
 
 # Option that cleans (removes) all the files and directories that aren't necessary for handing out the project
 clean:
@@ -32,15 +41,17 @@ clean:
 	rm -f doxygen_errors.log
 
 # Option that runs the test for the math library
-test:
-
+test: $(TESTS)
+	$(PYTH) -m $(UT) $<
 
 # Option that start the documentation of
-doc:
+doc: clean
+	doxygen
 
 # Option that will run the calculator
 run: $(GUI)
 	$(PYTH) $<
 
-profile: $(PROFIL) #skontrolovat, spytat sa kika ci ako sa spusta profiling
-	@ $(PYTH) $< 
+# Option that runs the profiling
+profile: $(PROFIL) 
+	@ $(PYTH) $< *.txt
