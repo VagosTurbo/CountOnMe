@@ -1,0 +1,14 @@
+CountOnMe - xseman06_xgrecn00_xbaumg01_xpogad00
+
+Rozdiel medzi plánom, a skutočnosťou bude opísaný v tomto textovom dokumente.
+
+Rozdiely:
+
+1.) Neplnenie zadaných termínov, niektoré veci boli deň až niekoľko dní pozadu.
+
+2.) TDD sa začalo robiť trošku neskôr, tým pádom sa muselo prerábať tak aby testy prechádzali.
+
+3.) Rozdelenie úloh sa niekedy nebralo v ohľad, kedže niektorí členovia tímu robili viac tak ostatní
+členovia tímu sa to snažili dohnať, tak sme si ako tím pomáhali kde sa dalo.
+
+4.) Príručka sa na konci musela prerábať kedže sme sa ako tým rozhodli zmeniť jedno tlačidlo.
