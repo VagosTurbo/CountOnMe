@@ -187,5 +187,4 @@ root.bind('<Return>', lambda event: [convert_equation(), calculate()])
 root.bind('<BackSpace>', lambda event: remove())
 
 root.mainloop()
-
 ## End of the file CountOnMeGUI.py ##
