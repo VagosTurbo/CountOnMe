@@ -4,7 +4,6 @@ import tkinter
 from tkinter import *
 from tkinter import messagebox
 import re
-import mathlib
 import core
 
 ## \file CountOnMeGUI.py
