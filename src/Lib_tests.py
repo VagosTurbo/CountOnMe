@@ -184,6 +184,12 @@ class TestNthRoot(unittest.TestCase): ########################### NTH ROOT tests
         self.assertEqual(nthroot(-4096, 4), expected_output)
         self.assertEqual(nthroot(-15625, 6), expected_output)
         self.assertEqual(nthroot(-6561, -8), expected_output)
+        
+        """self.assertRaises(ZeroDivisionError, nthroot, -390625, 8)
+        self.assertRaises(ZeroDivisionError, nthroot, -4096, 4)
+        self.assertRaises(ZeroDivisionError, nthroot, -15625, 6)
+        self.assertRaises(ZeroDivisionError, nthroot, -6561, -8)
+        """
 
     def test_nthroot_positive_negative_odd_Numbers(self): ########################### odd number root of negative number exists
         self.assertEqual(nthroot(-216, 3), '-6.0')
@@ -197,7 +203,7 @@ class TestNthRoot(unittest.TestCase): ########################### NTH ROOT tests
     
     def test_nthroot_zero_Number(self): ########################### nth number root of zero is zero
         self.assertEqual(nthroot(0, 3), '0.0')
-        self.assertRaises(ArithmeticError, nthroot, 0, -5)
+        self.assertRaises(ValueError, nthroot, 0, -5)
         
 ###################################################################################################
 
@@ -209,15 +215,16 @@ class TestLN(unittest.TestCase): ########################### natural logarithm t
         self.assertEqual(ln(1000), '3')
         self.assertEqual(ln(78), '0')
 
-    def test_ln_negative_numbers(self): ########################### natural logarithm of negative number doesn't exist
-        self.assertEqual(ln(-9), expected_output)
-        self.assertEqual(ln(-8765), expected_output)
-        self.assertEqual(ln(-532), expected_output)
-        self.assertEqual(ln(-78), expected_output)
-        self.assertEqual(ln(632), expected_output)
-        self.assertEqual(ln(-1), expected_output)
+    def test_ln_negative_numbers(self): ########################### natural logarithm of negative number doesn't existS
+        self.assertRaises(ValueError, ln, -9)
+        self.assertRaises(ValueError, ln, -8765)
+        self.assertRaises(ValueError, ln, -532)
+        self.assertRaises(ValueError, ln, -78)
+        self.assertRaises(ValueError, ln, -632)
+        self.assertRaises(ValueError, ln, -1)
+
 
     def test_ln_zero(self): ########################### natural logarithm of zero doesn't exist
-        self.assertEqual(ln(0), expected_output)
+        self.assertRaises(ValueError, ln, 0)
 
 ###################################################################################################
