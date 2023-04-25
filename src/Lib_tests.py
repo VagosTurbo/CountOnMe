@@ -121,10 +121,10 @@ class TestFactorial(unittest.TestCase): ########################### FACTORIAL te
         self.assertEqual(fact(10), '3628800')
 
     def test_factorial_negative_Numbers(self): ########################### factorial of negative number doesn't exists
-        self.assertEqual(fact(-7), expected_output)
-        self.assertEqual(fact(-3), expected_output)
-        self.assertEqual(fact(-5), expected_output)
-        self.assertEqual(fact(-1), expected_output)
+        self.assertRaises(ValueError, fact, -7)
+        self.assertRaises(ValueError, fact, -3)
+        self.assertRaises(ValueError, fact, -5)
+        self.assertRaises(ValueError, fact, -1)
 
     def test_zero_factorial(self): ########################### factorial of zero is 1
         self.assertEqual(fact(0), '1')
@@ -201,23 +201,23 @@ class TestNthRoot(unittest.TestCase): ########################### NTH ROOT tests
         
 ###################################################################################################
 
-class TestLOG(unittest.TestCase): ########################### decimal logarithm tests
-    def test_decimal_log_positive_numbers(self):
-        self.assertEqual(log(1), '0')
-        self.assertEqual(log(10), '1')
-        self.assertEqual(log(100), '2')
-        self.assertEqual(log(1000), '3')
-        self.assertEqual(log(78), '0')
+class TestLN(unittest.TestCase): ########################### natural logarithm tests
+    def test_ln_positive_numbers(self):
+        self.assertEqual(ln(1), '0.0')
+        self.assertEqual(ln(10), '2.302585092994046')
+        self.assertEqual(ln(100), '2.0')
+        self.assertEqual(ln(1000), '3')
+        self.assertEqual(ln(78), '0')
 
-    def test_decimal_log_positive_numbers(self): ########################### decimal logarithm of negative number doesn't exist
-        self.assertEqual(log(-9), expected_output)
-        self.assertEqual(log(-8765), expected_output)
-        self.assertEqual(log(-532), expected_output)
-        self.assertEqual(log(-78), expected_output)
-        self.assertEqual(log(632), expected_output)
-        self.assertEqual(log(-1), expected_output)
+    def test_ln_negative_numbers(self): ########################### natural logarithm of negative number doesn't exist
+        self.assertEqual(ln(-9), expected_output)
+        self.assertEqual(ln(-8765), expected_output)
+        self.assertEqual(ln(-532), expected_output)
+        self.assertEqual(ln(-78), expected_output)
+        self.assertEqual(ln(632), expected_output)
+        self.assertEqual(ln(-1), expected_output)
 
-    def test_decimal_log_zero(self): ########################### decimal logarithm of zero doesn't exist
-        self.assertEqual(log(0), expected_output)
+    def test_ln_zero(self): ########################### natural logarithm of zero doesn't exist
+        self.assertEqual(ln(0), expected_output)
 
 ###################################################################################################
