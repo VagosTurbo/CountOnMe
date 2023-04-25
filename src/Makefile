@@ -1,6 +1,7 @@
 #CountOnMe Makefile
 
 PYTH = python3
+FOLDER = CountOnMe2
 ZIP = xseman06_xgrecn00_xbaumg01_xpogad00
 GUI = CountOnMeGUI.py
 PROFIL = Standart_deviation.py
@@ -29,11 +30,15 @@ all:
 	sudo apt install python3 && sudo apt install python3-pip && sudo apt install python3-tk
 
 # Option that packs and makes the zip of the contents of the project for handing out the project
-pack: clean
-	rm -rf ../../$(ZIP).zip ../../$(ZIP)
-	cd ../../ && mkdir $(ZIP)
-	zip -r $(ZIP).zip 
-	rm -rf ../../$(ZIPNAME)
+pack: 
+	mkdir ../../$(ZIP)
+	mkdir -p ../../$(ZIP)/repo
+	mkdir ../../$(ZIP)/installer
+	mkdir ../../$(ZIP)/doc
+	cp -a ../../$(FOLDER) ../../$(ZIP)/repo/
+	cp -a ../doc/ ../../$(ZIP)/doc/
+	cp -a ../installer/ ../../$(ZIP)/installer/
+	cd ../../ && zip $(ZIP).zip $(ZIP)
 
 # Option that cleans (removes) all the files and directories that aren't necessary for handing out the project
 clean:
