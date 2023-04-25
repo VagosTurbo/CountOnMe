@@ -42,5 +42,5 @@ def ln(a):
 	if a <= 0:
 		raise ValueError("Can't take ln of negative number!")
 	n = 1000000.0
-	return round(n * ((a ** (1/n)) - 1), 6)
+	return str(round(n * ((a ** (1/n)) - 1), 6))
     
