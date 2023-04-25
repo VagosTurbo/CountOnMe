@@ -185,14 +185,14 @@ class TestNthRoot(unittest.TestCase):
         
 # @brief Test case class for logarithm
 class TestLN(unittest.TestCase): 
-    # @ Test case method for positive logarithms
+    # @brief Test case method for positive logarithms
     def test_ln_positive_numbers(self):
         self.assertEqual(ln(1), '0.0')
         self.assertEqual(ln(10), '2.302585092994046')
         self.assertEqual(ln(100), '2.0')
         self.assertEqual(ln(1000), '3')
         self.assertEqual(ln(78), '0')
-    # @ Test case method for negative logarithms (doesn't exist)
+    # @brief Test case method for negative logarithms (doesn't exist)
     def test_ln_negative_numbers(self):
         self.assertEqual(ln(-9), expected_output)
         self.assertEqual(ln(-8765), expected_output)
@@ -200,7 +200,7 @@ class TestLN(unittest.TestCase):
         self.assertEqual(ln(-78), expected_output)
         self.assertEqual(ln(632), expected_output)
         self.assertEqual(ln(-1), expected_output)
-    # @ Test case method for zero logarithm (doesn't exist)
+    # @brief Test case method for zero logarithm (doesn't exist)
     def test_ln_zero(self): 
         self.assertEqual(ln(0), expected_output)
 ## End of file Lib_tests.py ##
