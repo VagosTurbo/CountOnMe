@@ -1,14 +1,28 @@
-CountOnMe - xseman06_xgrecn00_xbaumg01_xpogad00
+Vyhodnotenie medzi plánom a skutočnosťou:
 
-Rozdiel medzi plánom, a skutočnosťou bude opísaný v tomto textovom dokumente.
+    Po dokončení projektu je nutné zhodnotiť rozdiel medzi pôvodným plánom projektu a jeho reálnym priebehom.
+Veľa z predom dohodnutých termínov na dokončenie určitých častí projektu nebolo dodržaných a spôsobili 
+značné zbrzdenie celého projektu, a taktiež odloženie dokončenia iných častí. Dôvodov pre tieto neúspechy a 
+zdržania bolo pomerne veľa. Často sa uprednostňovala práca  na iných školských projektoch.
 
-Rozdiely:
+    Svoju úlohu zohral aj výber programovacieho jazyka, ktorým bol Python. Istý členovia tímu mali s týmto 
+skriptovacím jazykom pomerne dobre skúsenosti a boli schopný s ním pracovať na vyššej úrovni, ale niektorí 
+členovia tímu sa s týmto jazykom nestretli vôbec, respektíve s ním mali len malú skúsenosť a museli sa ho 
+doučiť, čo trvá nejaký čas. Táto časť sa podcenila a nakoniec viedla k nemalým problémom.
 
-1.) Neplnenie zadaných termínov, niektoré veci boli deň až niekoľko dní pozadu.
+    Ďalším dôvodom zdržovania pravdepodobne bolo, že vznikali čiastočné nezhody pri prideľovaní jednotlivých úloh.
+Nie každý bol úplne stotožnený s tým čo by mal vlastne robiť a často sa na to prichádzalo na poslednú chvíľu.  
+Zbytok tímu však bol vždy ochotný pomôcť v prípade potreby. V priebehu vývoja sa aj vymieňali úlohy medzi jednotlivými 
+členmi, ktoré boli buď pre daného člena náročné, respektíve sa usúdilo, že by sa lepšie hodil na inú úlohu.
 
-2.) TDD sa začalo robiť trošku neskôr, tým pádom sa muselo prerábať tak aby testy prechádzali.
+    Systém na správu verzií rovnako zo začiatku spôsoboval nedorozumenia a rovnako trvalo nejaký čas kým si všetci 
+osvojili jednotlivé príkazy a funkcionalitu. Z tohto dôvodu bol založený aj druhý gitový repozitár, kvôli zlému narábaniu s prvým.
 
-3.) Rozdelenie úloh sa niekedy nebralo v ohľad, kedže niektorí členovia tímu robili viac tak ostatní
-členovia tímu sa to snažili dohnať, tak sme si ako tím pomáhali kde sa dalo.
+    Čo sa týka komunikácie v tíme je nutné poznamenať, že prebiehala na pomerne dobrej úrovni a bez väčších problémov. 
+Uprednostnené boli hlavne osobné stretnutia a discord. 
 
-4.) Príručka sa na konci musela prerábať kedže sme sa ako tým rozhodli zmeniť jedno tlačidlo.
+    K celkovému zhodnoteniu treba povedať, že vývoj sprevádzali nemalé problémy, ktoré sa začali prejavovať až vo finálnych 
+fázach projektu, ale nakoniec sa väčšinu problémov podarilo vyriešiť a projekt odovzdať.
+  
+
+	
