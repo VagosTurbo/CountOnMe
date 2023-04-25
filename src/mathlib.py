@@ -3,23 +3,28 @@
 import math
 
 def add(a,b):
-    return str(a+b)
+    result = a + b
+    return str(round(result, 6))
 
 def sub(a,b):
-    return str(a-b)
+    result = a - b
+    return str(round(result, 6)) 
 
 def div(a,b):
     if b == 0:
         raise ZeroDivisionError("Can't divide by zero!")
-    return str(a/b)
+    result = a / b
+    return str(round(result, 6))
 
 def mul(a,b):
-    return str(a*b)
+    result = a * b
+    return str(round(result, 6))
 
 def nthroot(a, b):
     if b == 0:
         raise ZeroDivisionError("Can't divide by zero!")
-    return str(a**(1/b))
+    result = a**(1/b)
+    return str(round(result, 6))
 
 def fact(a):
     if a < 0:
@@ -31,10 +36,10 @@ def fact(a):
 
 def pwr(a,b):
     result = a**b
-    return str(result)
+    return str(round(result, 6))
 
 def ln(a):
     if a <= 0:
         raise ValueError("Can't take log of negative number!")
     result = math.log(a, math.e)
-    return str(result)
+    return str(round(result, 6))
