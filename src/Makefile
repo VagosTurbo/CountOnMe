@@ -3,6 +3,7 @@
 PYTH = python3
 ZIP = xseman06_xgrecn00_xbaumg01_xpogad00
 GUI = CountOnMeGUI.py
+PROFIL = Standart_deviation.py
 
 help:
 	@echo "Simple calculator named CountOnMe																				"
@@ -18,17 +19,28 @@ help:
 	@echo "	profile: runs the program for calculation of decisive derivant for profiling									"
 	@echo "	clean: 	 deletes all files that should not be committed  													  	"
 
+# Option that installs all the required packages for the calculator to run
 all:
+	sudo apt install python3 && sudo apt install python3-pip && sudo apt install python3-tk
 
-pack:
+# Option that packs and makes the zip of the contents of the project for handing out the project
+pack: clean
 
+# Option that cleans (removes) all the files and directories that aren't necessary for handing out the project
 clean:
+	rm -rf __pycache__
+	rm -f doxygen_errors.log
 
+# Option that runs the test for the math library
 test:
 
+
+# Option that start the documentation of
 doc:
 
+# Option that will run the calculator
 run: $(GUI)
-	$(PYTH) $^
+	$(PYTH) $<
 
-profile: 
+profile: $(PROFIL) #skontrolovat, spytat sa kika ci ako sa spusta profiling
+	@ $(PYTH) $< 
