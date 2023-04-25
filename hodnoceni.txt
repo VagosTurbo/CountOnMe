@@ -1,0 +1,4 @@
+xseman06 100 (git repozitar, GUI, instalacka/odinstalacka, mockup)
+xpogad00 100 (kniznica, kod/kostra)
+xbaumg01 100 (uzivatelska/technicka dokumentacia, makefile, debugging)
+xgrecn00 100 (profiling, testy, vyhodnotenie medzi planom a skutocnostou)

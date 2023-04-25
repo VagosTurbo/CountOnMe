@@ -9,7 +9,7 @@ Ubuntu 64bit
 ------
 
 Team: Všetko nad E je zbytočný tryhard
-- xxeman06 Boris Semanco
+- xseman06 Boris Semanco
 - xbaumg01 Rudolf Baumgartner
 - xpogad00 Jakub Pogádl 
 - xgrecn00 Kristán Grečnár 
