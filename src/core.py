@@ -12,12 +12,10 @@ def easteregg(equation_list):
         return 0
         
 def return_result(equation_list):
-
-
-    if (easteregg(equation_list)):
-        return "You found the easter egg!"
-
     try:
+        if (easteregg(equation_list)):
+            return "You found the easter egg!"
+
         #if separator is followed by -
         indexes_to_remove = []
         for i in range(len(equation_list) - 1):
@@ -26,18 +24,15 @@ def return_result(equation_list):
                 indexes_to_remove.append(i+1)
         #remove unnecessary '-'
         equation_list = [item for i, item in enumerate(equation_list) if i not in indexes_to_remove]
-        
+        print("THIS IS EQUATION LIST", equation_list)
         #go through sqrt
         while ("√" in equation_list):
             for i, operator in enumerate(equation_list):
                 if operator == "√":
-                    print("toto je i", i)
                     result = mathlib.nthroot(float(equation_list[i+1]), float(equation_list[i-1]))
                     equation_list.pop(i-1)
                     equation_list.pop(i-1)
                     equation_list[i-1] = result
-                    print(equation_list)
-        print("opustam odmocninu")
         #go through ^
         while ("^" in equation_list):
             for i, operator in enumerate(equation_list):
@@ -46,7 +41,6 @@ def return_result(equation_list):
                     equation_list.pop(i-1)
                     equation_list.pop(i)
                     equation_list[i-1] = result
-                    print(equation_list)
 
         #go through factorial
         while ("!" in equation_list):
@@ -55,7 +49,6 @@ def return_result(equation_list):
                     result = mathlib.fact(int(equation_list[i-1]))
                     equation_list.pop(i)
                     equation_list[i-1] = result
-                    print(equation_list)
         
         #go through ln
         while ("ln" in equation_list):
@@ -64,7 +57,6 @@ def return_result(equation_list):
                     result = mathlib.ln(float(equation_list[i+1]))
                     equation_list[i+1] = result
                     equation_list.pop(i)
-                    print(equation_list)
 
         #go through * and /
         while ("*" in equation_list) or ("/" in equation_list):
@@ -74,14 +66,12 @@ def return_result(equation_list):
                     equation_list.pop(i-1)
                     equation_list.pop(i)
                     equation_list[i-1] = result
-                    print(equation_list)
 
                 if operator == "/":
                     result = mathlib.div(float(equation_list[i-1]), float(equation_list[i+1]))
                     equation_list.pop(i-1)
                     equation_list.pop(i)
                     equation_list[i-1] = result
-                    print(equation_list)
         while ("-" in equation_list):
             for i, operator in enumerate(equation_list):
                 if operator == "-":
@@ -89,7 +79,6 @@ def return_result(equation_list):
                     equation_list.pop(i-1)
                     equation_list.pop(i)
                     equation_list[i-1] = result
-                    print(equation_list)
         #go through add and sub 
         while ("+" in equation_list):
             for i, operator in enumerate(equation_list):
@@ -98,8 +87,6 @@ def return_result(equation_list):
                     equation_list.pop(i-1)
                     equation_list.pop(i)
                     equation_list[i-1] = result
-                    print(equation_list)
     except:
         return "error"
-
     return equation_list[0]
