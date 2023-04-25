@@ -67,9 +67,9 @@ def return_result(equation_list):
         #go through ln
         while ("ln" in equation_list):
             for i, operator in enumerate(equation_list):
-                if not re.search(separators, equation_list[i]): 
-                    return "error"
                 if operator == "ln":
+                    if not re.search(separators, equation_list[i-1]): 
+                        return "error"
                     result = mathlib.ln(float(equation_list[i+1]))
                     equation_list[i+1] = result
                     equation_list.pop(i)
