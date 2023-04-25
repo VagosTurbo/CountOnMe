@@ -203,7 +203,7 @@ class TestNthRoot(unittest.TestCase): ########################### NTH ROOT tests
     
     def test_nthroot_zero_Number(self): ########################### nth number root of zero is zero
         self.assertEqual(nthroot(0, 3), '0.0')
-        self.assertRaises(ValueError, nthroot, 0, -5)
+        self.assertRaises(ZeroDivisionError, nthroot, 0, -5)
         
 ###################################################################################################
 
