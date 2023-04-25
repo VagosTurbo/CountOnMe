@@ -16,7 +16,7 @@ root.configure(bg="#17161b")
 #variable for equation
 equation = ""
 equation_list = []
-separators =  r"([+\-*/^√!])"
+separators = r"([+\-*/^√!]|ln)"
 ERRORMESSAGE = "error"
 
 
@@ -108,12 +108,11 @@ def calculate():
             for i, operator in enumerate(equation_list):
                 print(equation_list)
                 if operator == "√":
-                    result = mathlib.sqrt(float(equation_list[i+1]), float(equation_list[i-1]))
+                    result = mathlib.nthroot(float(equation_list[i+1]), float(equation_list[i-1]))
                     equation_list.remove(equation_list[i-1])
                     equation_list.remove(equation_list[i])
                     equation_list[i-1] = result
                     print(equation_list)
-                    continue
         #go through ^
         while ("^" in equation_list):
             for i, operator in enumerate(equation_list):
@@ -124,7 +123,6 @@ def calculate():
                     equation_list.remove(equation_list[i])
                     equation_list[i-1] = result
                     print(equation_list)
-                    continue
         #go through factorial
         while ("!" in equation_list):
             for i, operator in enumerate(equation_list):
@@ -146,16 +144,15 @@ def calculate():
         #remove unnecessary '-'
         equation_list = [item for i, item in enumerate(equation_list) if i not in indexes_to_remove]  
 
-        #go through log
-        while ("log" in equation_list):
+        #go through ln
+        while ("ln" in equation_list):
             for i, operator in enumerate(equation_list):
                 print(equation_list)
-                if operator == "log":
+                if operator == "ln":
                     result = mathlib.log(float(equation_list[i+1]))
                     equation_list[i+1] = result
                     equation_list.remove(equation_list[i])
                     print(equation_list)
-                    continue
             
         #go through * and /
         while ("*" in equation_list) or ("/" in equation_list):
