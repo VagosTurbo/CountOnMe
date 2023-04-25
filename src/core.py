@@ -27,16 +27,19 @@ def return_result(equation_list):
     try:
         if (easteregg(equation_list)):
             return "You found the easter egg!"
-
+        print("THIS IS OG EQUATION LIST", equation_list)
         #if separator is followed by -
         indexes_to_remove = []
         for i in range(len(equation_list) - 1):
-            if re.match(separators, equation_list[i]) and equation_list[i+1] == '-':
+            if re.match(r'^{}$'.format(separators), equation_list[i]) and equation_list[i+1] == '-':
                 equation_list[i+2] = '-' + str(equation_list[i+2])
                 indexes_to_remove.append(i+1)
+
         #remove unnecessary '-'
         equation_list = [item for i, item in enumerate(equation_list) if i not in indexes_to_remove]
         print("THIS IS EQUATION LIST", equation_list)
+        if equation_list[0] == '--':
+            equation_list.pop(0)
         #go through sqrt
         while ("√" in equation_list):
             for i, operator in enumerate(equation_list):
@@ -65,6 +68,8 @@ def return_result(equation_list):
         #go through ln
         while ("ln" in equation_list):
             for i, operator in enumerate(equation_list):
+                if not re.search(separators, equation_list[i]): 
+                    return "error"
                 if operator == "ln":
                     result = mathlib.ln(float(equation_list[i+1]))
                     equation_list[i+1] = result
