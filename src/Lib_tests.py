@@ -63,9 +63,10 @@ class TestDivision(unittest.TestCase): ########################### DIVISION test
         self.assertEqual(div(-18000, -300), '60.0')
 
     def test_zero_division(self): ########################### division by zero
-        self.assertEqual(div(-8700, 0), expected_output)
-        self.assertEqual(div(678654, 0), expected_output)
-        self.assertEqual(div(0, 0), expected_output)
+        
+        self.assertRaises(ZeroDivisionError, div, 678654, 0)
+        self.assertRaises(ZeroDivisionError, div, -8700, 0)
+        self.assertRaises(ZeroDivisionError, div, 0, 0)
 
 ###################################################################################################
 
