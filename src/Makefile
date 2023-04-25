@@ -1,5 +1,9 @@
 #CountOnMe Makefile
 
+PYTH = python3
+ZIP = xseman06_xgrecn00_xbaumg01_xpogad00
+GUI = CountOnMeGUI.py
+
 help:
 	@echo "Simple calculator named CountOnMe																				"
 	@echo "Usage: make (OPTIONS)																							"
@@ -24,6 +28,7 @@ test:
 
 doc:
 
-run:
+run: $(GUI)
+	$(PYTH) $^
 
 profile: 
