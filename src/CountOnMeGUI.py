@@ -17,12 +17,20 @@ root = Tk()
 root.title("CountOnMe")
 root.geometry("570x470+100+100")
 root.resizable(False, False)
+## @brief Color of the backround
 root.configure(bg="#17161b")
 
-## @brief Variable for equation
+## @brief Function that converts equation to list
+# @param equation_list list of all equations
+# @param equation all equations
+# @param seperators all seperators
+
 equation = ""
+## @brief equation list is a list of all equations
 equation_list = []
+## @brief separators are all separators
 separators = r"([+\-*/^√!]|ln)"
+## @brief ERRORMESSAGE is a error massage when error occurres
 ERRORMESSAGE = "error"
 
 ## @brief Function that converts equation to list
@@ -109,6 +117,7 @@ def calculate():
     equation_list.clear()
 
 ## @brief generating a window for equation/result
+## @brief label is a label for calculator
 display = Label(root, width = 25, height = 2, text = "", font = ("arial", 30))
 display.pack()
 
@@ -130,6 +139,8 @@ help_message = ["This is a simple calculator made by our team\n\n",
 menubar = Menu(root, bg="#17161b", relief=FLAT, fg= "#fff", bd=0)
 ## @brief Help menu to the menubar
 help_menu = Menu(menubar, tearoff=0)
+## @brief help menu is helpfull menu
+# @param command is for labeling which command to print
 help_menu.add_command(label="Help", command=lambda: messagebox.showinfo("Help", "".join(help_message)))
 menubar.add_cascade(label="Help", menu=help_menu)
 
