@@ -9,6 +9,7 @@ import re
 # @date 21.4 2023
 # @return result of equation
 
+## @param separators the definition for a parameter whic seperates the strings from each other
 separators = r"([+\-*/^√!]|ln)"
 
 ## @brief Checks if the first element in the given equation list is a special number.
