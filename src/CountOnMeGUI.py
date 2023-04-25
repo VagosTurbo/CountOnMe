@@ -22,13 +22,7 @@ root.configure(bg="#17161b")
 #variable for equation
 equation = ""
 equation_list = []
-<<<<<<< HEAD
 separators = r"([+\-*/^√!]|ln)"
-=======
-separators =  r"([+\-*/^√!])"
-
-## eroor massage
->>>>>>> refs/remotes/origin/main
 ERRORMESSAGE = "error"
 
 ## \brief Function that converts equation to list
