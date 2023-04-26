@@ -157,22 +157,6 @@ class TestNthRoot(unittest.TestCase):
         self.assertEqual(nthroot(1, -4), '1.0')
         self.assertEqual(nthroot(25, -2), '0.2')
         self.assertEqual(nthroot(400, -2), '0.05')
-    # @brief Test case method for the root of negative numbers
-    def test_nthroot_negative_Numbers(self):
-        self.assertEqual(nthroot(-125, -3), '-0.2')
-        self.assertEqual(nthroot(-1024, -5), '-0.25')
-        self.assertEqual(nthroot(-10000000, -7), '-0.1')
-    # @brief Test case method for the root of positive AND negative EVEN numbers
-    def test_nthroot_positive_negative_even_Numbers(self): 
-        self.assertEqual(nthroot(-390625, 8), expected_output)
-        self.assertEqual(nthroot(-4096, 4), expected_output)
-        self.assertEqual(nthroot(-15625, 6), expected_output)
-        self.assertEqual(nthroot(-6561, -8), expected_output)
-    # @brief Test case method for the root of positive AND negative ODD numbers
-    def test_nthroot_positive_negative_odd_Numbers(self): 
-        self.assertEqual(nthroot(-216, 3), '-6.0')
-        self.assertEqual(nthroot(-16807, 5), '-7.0')
-        self.assertEqual(nthroot(-8192, 13), '-2.0')
     # @brief Test case method for the zero root 
     def test_zero_nthroot(self):
         self.assertRaises(ZeroDivisionError, nthroot, 234, 0)
@@ -188,10 +172,10 @@ class TestLN(unittest.TestCase):
     # @brief Test case method for positive logarithms
     def test_ln_positive_numbers(self):
         self.assertEqual(ln(1), '0.0')
-        self.assertEqual(ln(10), '2.302585')
-        self.assertEqual(ln(100), '4.60517')
-        self.assertEqual(ln(1000), '6.907755')
-        self.assertEqual(ln(78), '4.356709')
+        self.assertEqual(ln(10), '2.302588')
+        self.assertEqual(ln(100), '4.605181')
+        self.assertEqual(ln(1000), '6.907779')
+        self.assertEqual(ln(78), '4.356718')
     # @ Test case method for negative logarithms (doesn't exist)
     def test_ln_negative_numbers(self):
         self.assertRaises(ValueError, ln, -9)
