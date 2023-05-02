@@ -1,0 +1,5 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+
+stddevdir=`dirname "$0"`
+exec python3 "${stddevdir}/Standart_deviation.py"

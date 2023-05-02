@@ -1,0 +1,8 @@
+Package: stddev
+Version: 1.0
+Architecture: all
+Essential: no
+Terminal: yes
+Priority: optional
+Maintainer: CountOnMe Team
+Description: This program counts standart deviation of given numbers.

@@ -5,30 +5,38 @@ from tkinter import *
 from tkinter import messagebox
 import re
 import mathlib
-import CalculatorParser
+import core
 
-## \file CountOnMeGUI.py
-# \brief GUI calculator that performs basic arithmetic operations as well as root, exponentiation, factorial, ...
-#
-# This file contains a GUI calculator with a basic interface that allows the user to perform the following operations: addition, subtraction, multiplication, division, exponentiation, root, factorial, and so on.
+## @file CountOnMeGUI.py
+# @brief GUI calculator that performs basic arithmetic operations as well as root, exponentiation, factorial, ...
+# @authors Jakub Pogadl, Boris Semanco
+# @date 23.3 2023
 
-#generating and configuring window
+## @brief Generating and configuring window
 root = Tk()
 root.title("CountOnMe")
-#root.iconbitmap("/home/boriss/Documents/VUT-FIT/IVS/proj2/CountOnMe/icon.ico")
 root.geometry("570x470+100+100")
 root.resizable(False, False)
+## @brief Color of the backround
 root.configure(bg="#17161b")
 
-#variable for equation
+## @brief Function that converts equation to list
+# @param equation_list list of all equations
+# @param equation all equations
+# @param seperators all seperators
+
 equation = ""
+## @brief equation list is a list of all equations
 equation_list = []
+## @brief separators are all separators
 separators = r"([+\-*/^√!]|ln)"
+## @brief ERRORMESSAGE is a error massage when error occurres
 ERRORMESSAGE = "error"
 
-## \brief Function that converts equation to list
-#
-# This function takes the equation string and converts it to a list of numbers and operators.
+## @brief Function that converts equation to list
+# @param equation_list list of all equations
+# @param equation all equations
+# @param seperators all seperators
 
 def convert_equation():
     global equation_list
@@ -51,13 +59,9 @@ def convert_equation():
     if equation_list[0] == '+':
         equation_list.remove(equation_list[0])      
 
-    print("Equation list = ", equation_list)
-
-## \brief Function that displays the numbers on the calculator's display
-#  
-#  This function updates the value of the equation string with the value of the button that was clicked, and displays it on the calculator's display. 
-#
-#  \param value the value of the button that was clicked
+## @brief Function that displays the numbers on the calculator's display
+# @param value the value of the button that was clicked.
+# @return
 
 def show(value):
     global equation
@@ -67,11 +71,9 @@ def show(value):
     equation += value
     display.config(text = equation)
 
-## \brief Function that displays a message if the user types in a specific string
-#  
-#  This function checks whether the user has typed in a specific string and displays a message on the calculator's display if they have.
-#
-#  \return 1 if the user has found the easter egg, 0 otherwise
+## @brief Function that displays a message if the user types in a specific string
+#  @param equation all equations
+#  @return 1 if the user has found the easter egg, 0 otherwise
 
 def easteregg():
     global equation
@@ -81,10 +83,8 @@ def easteregg():
     else:
         return 0
 
-## \brief Function that removes the last character from the equation string
-#  
-#  This function removes the last character from the equation string and updates the value of the calculator's display. 
-#
+## @brief Function that removes the last character from the equation string
+# @param equation all equations
 
 def remove():
     global equation
@@ -95,33 +95,33 @@ def remove():
         display.config(text = equation)
 
 
-## \brief Function that clears the display and resets 'equation' to an empty string
-#
-#
-#
+## @brief Function that clears the display and resets 'equation' to an empty string
+# @param equation all equations
 
 def clear():
     global equation
     equation = ""
     display.config(text = equation)
 
-## \brief The function 'calculate' performs the calculation based on 'equation'
-#
-# This function calculates and shows the result on the display after hitting '='.
-#
+## @brief The function 'calculate' performs the calculation based on 'equation'
+# @param equation_list list of all equations
+# @param equation all equations
+# @param result result of the calculate function
 
 def calculate():
     global equation
-    result = CalculatorParser.return_result(equation_list)
-    equation = str(equation_list[0])
+    global equation_list
+    result = core.return_result(equation_list)
     display.config(text=result)
+    equation = ""
     equation_list.clear()
 
-#generating a window for equation/resuglt
+## @brief generating a window for equation/result
+## @brief label is a label for calculator
 display = Label(root, width = 25, height = 2, text = "", font = ("arial", 30))
 display.pack()
 
-#help message for user
+## @brief help message for user
 help_message = ["This is a simple calculator made by our team\n\n",
                 "C    -   clears the display\n",
                 "⌫  -   removes the last \n          character\n",
@@ -135,17 +135,19 @@ help_message = ["This is a simple calculator made by our team\n\n",
                 "+   -   addition\n",
                 "=   -   calculates the result\n"]
 
-# create a menubar
+## @brief create a menubar
 menubar = Menu(root, bg="#17161b", relief=FLAT, fg= "#fff", bd=0)
-# add a Help menu to the menubar
+## @brief Help menu to the menubar
 help_menu = Menu(menubar, tearoff=0)
+## @brief help menu is helpfull menu
+# @param command is for labeling which command to print
 help_menu.add_command(label="Help", command=lambda: messagebox.showinfo("Help", "".join(help_message)))
 menubar.add_cascade(label="Help", menu=help_menu)
 
-# display the menubar
+## @brief display the menubar
 root.config(menu=menubar)
 
-#making and configuring buttons
+## @brief making and configuring buttons
 Button(root, text="C", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#289cbf", command=lambda: clear()).place(x=8, y=100)
 Button(root, text="⌫", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#31BED7", command=lambda: remove()).place(x=141, y=100)
 Button(root, text="x!", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show("!")).place(x=281, y=100)
@@ -174,7 +176,7 @@ Button(root, text="0", width=12, height=1, font=("arial", 30, "bold"), bd=1, fg=
 Button(root, text=".", width=5, height=1, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#2a2d36", command=lambda: show(".")).place(x=281, y=400)
 Button(root, text="=", width=5, height=2, font=("arial", 30, "bold"), bd=1, fg="#fff", bg="#F7A32A", command=lambda: [convert_equation() ,calculate()]).place(x=421, y=340)
 
-#binding keys from keybord
+## @brief binding keys from keybord
 root.bind('1', lambda event: show("1"))
 root.bind('2', lambda event: show("2"))
 root.bind('3', lambda event: show("3"))
@@ -195,6 +197,5 @@ root.bind('c', lambda event: clear())
 root.bind('<Return>', lambda event: [convert_equation(), calculate()])
 root.bind('<BackSpace>', lambda event: remove())
 
-
-
 root.mainloop()
+## End of the file CountOnMeGUI.py ##
