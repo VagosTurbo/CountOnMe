@@ -1,8 +1,0 @@
-Package: CountOnMe
-Version: 1.0
-Architecture: all
-Essential: no
-Priority: optional
-Depends: python3-tk
-Maintainer: CountOnMe Team
-Description: CountOnMe is a simple math expression evaluator
